@@ -1,0 +1,16 @@
+anniversary-project
+├── src
+│   ├── js
+│   │   ├── animations.js
+│   │   └── main.js
+│   ├── css
+│   │   ├── styles.css
+│   │   └── animations.css
+│   ├── index.html
+│   └── components
+│       ├── gallery.html
+│       └── letter.html
+├── public
+│   └── assets
+├── package.json
+└── README.md

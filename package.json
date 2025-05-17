@@ -1,0 +1,22 @@
+{
+  "name": "anniversary-project",
+  "version": "1.0.0",
+  "description": "A special web project to celebrate an anniversary with animations and a blue theme.",
+  "main": "src/js/main.js",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step can be added here.'"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "anniversary",
+    "celebration",
+    "web",
+    "animations"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <title>Love Letter</title>
+</head>
+<body>
+    <div class="background-hearts"></div>
+    <div class="music-player">
+        <audio id="bgMusic" preload="auto" loop>
+            <source src="../assets/music/bgm.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="musicToggle" class="music-toggle">
+            🎵 Play Music
+        </button>
+    </div>
+    <div class="letter-container">
+        <h1 class="letter-title">A Love Letter</h1>
+        <div class="typing-content">
+            <p class="letter-content" id="typed-text-1">
+                💖 To My Bubbeii 💖
+            </p>
+            <p class="letter-content" id="typed-text-2">
+                Welcome to a little corner of the internet I made just for <strong>you</strong>, my love.
+            </p>
+            <p class="letter-content" id="typed-text-3">
+                This is more than just a webpage — it's a digital love letter, a memory box, and a date invitation, all wrapped up in one. 🌹
+            </p>
+            <p class="letter-content" id="typed-text-4">
+                Today marks <strong>1 year</strong> since this beautiful journey began.
+            </p>
+            <p class="letter-content" id="typed-text-5">
+                From laughs and late-night talks to warm hugs and shared dreams — thank you for being my everything.
+            </p>
+            <blockquote id="typed-text-6">
+                <p>_"I love you, bubbeii — always, endlessly, and more than words can say."_ 💘</p>
+            </blockquote>
+        </div>
+    </div>
+    <script src="../js/animations.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/audioManager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioManager = AudioManager.getInstance();
+            const audio = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+
+            if (audio && musicToggle) {
+                audioManager.loadState();
+
+                musicToggle.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play();
+                        audioManager.isPlaying = true;
+                        musicToggle.textContent = '🎵 Pause Music';
+                        musicToggle.classList.add('playing');
+                    } else {
+                        audio.pause();
+                        audioManager.isPlaying = false;
+                        musicToggle.textContent = '🎵 Play Music';
+                        musicToggle.classList.remove('playing');
+                    }
+                    audioManager.saveState();
+                });
+
+                // Save state before leaving page
+                window.addEventListener('beforeunload', () => {
+                    audioManager.saveState();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

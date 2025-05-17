@@ -1,0 +1,484 @@
+/* Main styles for the anniversary project */
+
+:root {
+    --primary-blue: #1e90ff;
+    --secondary-blue: #00bfff;
+}
+
+body {
+    background: linear-gradient(135deg, #e0f7ff 0%, #87CEEB 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    padding: 2rem;
+}
+
+header {
+    background-color: #b3e5fc; /* Lighter blue for header */
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #01579b; /* Deep blue for headings */
+}
+
+a {
+    color: #0288d1; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #b3e5fc; /* Lighter blue for footer */
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.landing-page {
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.heart-container {
+    text-align: center;
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-blue);
+    position: relative;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    margin: 50px auto;
+    animation: heartbeat 1.5s infinite;
+}
+
+.heart:before, .heart:after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart:before {
+    top: -50px;
+    left: 0;
+}
+
+.heart:after {
+    top: 0;
+    left: 50px;
+}
+
+h1 {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5em;
+    margin-top: 2em;
+}
+
+@keyframes heartbeat {
+    0% { transform: rotate(-45deg) scale(1); }
+    14% { transform: rotate(-45deg) scale(1.1); }
+    28% { transform: rotate(-45deg) scale(1); }
+    42% { transform: rotate(-45deg) scale(1.1); }
+    70% { transform: rotate(-45deg) scale(1); }
+}
+
+/* Update these specific styles in your existing CSS file */
+
+.navigation-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.navigation-controls button {
+    padding: 10px 20px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.navigation-controls button:hover {
+    transform: scale(1.1);
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Gallery Page Styles */
+.gallery-page {
+    background: linear-gradient(135deg, #87CEEB 0%, #00BFFF 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-title {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    height: 300px;
+    opacity: 1; /* Ensure items are fully visible by default */
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(30, 144, 255, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 1; /* Ensure images are fully visible */
+    display: block; /* Prevent any layout issues */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.8); /* Slightly dim the image on hover */
+}
+
+.memory-caption {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(30, 144, 255, 0.95),
+        rgba(30, 144, 255, 0.7)
+    );
+    padding: 1.5rem;
+    color: white;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.gallery-item:hover .memory-caption {
+    bottom: 0;
+    backdrop-filter: blur(3px);
+}
+
+.memory-caption h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.memory-caption p {
+    margin: 0.8rem 0 0 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Add this new hover effect */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 70%,
+        rgba(30, 144, 255, 0.3) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Floating hearts background */
+.background-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Remove any fade-out animations that might be affecting the gallery */
+.gallery-container {
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+/* Add a nice fade-in animation when the page loads */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gallery-item {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger the fade-in animation for each item */
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* Update the gallery page background */
+.gallery-page {
+    background: linear-gradient(135deg, #87CEEB 0%, #00BFFF 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add butterfly and hearts animations */
+.butterfly {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231e90ff"><path d="M12 2L9 7l3 3-3 3-3-3 3-5-3-5 3 3 3-3zm0 20l3-5-3-3 3-3 3 3-3 5 3 5-3-3-3 3z"/></svg>');
+    background-size: contain;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+    animation: flutter 20s linear infinite;
+}
+
+.floating-heart {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: rgba(30, 144, 255, 0.2);
+    clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+    animation: float 15s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes flutter {
+    0% {
+        transform: translate(0, 100vh) rotate(0deg) scale(0.8);
+    }
+    25% {
+        transform: translate(25vw, 75vh) rotate(45deg) scale(1);
+    }
+    50% {
+        transform: translate(50vw, 50vh) rotate(-45deg) scale(0.8);
+    }
+    75% {
+        transform: translate(75vw, 25vh) rotate(45deg) scale(1);
+    }
+    100% {
+        transform: translate(100vw, 0) rotate(0deg) scale(0.8);
+    }
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-100vh); }
+}
+
+/* Love Letter Styles */
+body {
+    background: linear-gradient(135deg, #e0f7ff 0%, #87CEEB 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    padding: 2rem;
+}
+
+.letter-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.letter-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid #87CEEB;
+    border-radius: 25px;
+    z-index: -1;
+}
+
+.letter-title {
+    color: #1e90ff;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.letter-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.letter-content:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.letter-content:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+blockquote {
+    border-left: 4px solid #1e90ff;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #1e90ff;
+    animation: slideUp 0.8s ease-out 0.9s forwards;
+    opacity: 0;
+}
+
+blockquote p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optimize animations */
+.floating-heart {
+    will-change: transform;
+    transform: translateZ(0);
+    /* Reduce animation complexity */
+    animation: float 15s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-100vh); }
+}
+
+/* Optimize performance with hardware acceleration */
+.letter-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Music Player Styles */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-toggle {
+    background: rgba(30, 144, 255, 0.8);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.music-toggle:hover {
+    background: rgba(30, 144, 255, 1);
+    transform: scale(1.05);
+}
+
+.music-toggle.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
