@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <style>
+        .invitation-container {
+            max-width: 480px;
+            margin: 5vh auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(30,144,255,0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .invitation-title {
+            color: #1e90ff;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            font-family: 'Indie Flower', cursive, Arial, sans-serif;
+        }
+        .invitation-message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 2.2rem;
+            font-family: 'Indie Flower', cursive, Arial, sans-serif;
+        }
+        .invitation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .invitation-btn {
+            padding: 0.8rem 2.2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #1e90ff 60%, #00bfff 100%);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .invitation-btn:hover {
+            background: #1e90ff;
+            transform: scale(1.08);
+        }
+        .invitation-response {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            color: #1e90ff;
+            font-family: 'Indie Flower', cursive, Arial, sans-serif;
+            min-height: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-hearts"></div>
+    <div class="invitation-container">
+        <div class="invitation-title">💌 Date Invitation 💌</div>
+        <div class="invitation-message">
+            Will you go on a special date with me?<br>
+            <span style="font-size:1.5rem;">🥰</span>
+        </div>
+        <div class="invitation-buttons">
+            <button class="invitation-btn" id="yesBtn">YES</button>
+            <button class="invitation-btn" id="noBtn">NO</button>
+        </div>
+        <div class="invitation-response" id="invitationResponse"></div>
+    </div>
+    <div class="music-player">
+        <audio id="bgMusic" preload="auto" loop>
+            <source src="../assets/music/bgm.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="musicToggle" class="music-toggle">
+            🎵 Play Music
+        </button>
+    </div>
+    <script src="../js/animations.js"></script>
+    <script src="../js/audioManager.js"></script>
+    <script>
+        // Music player persistence
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioManager = AudioManager.getInstance();
+            const audio = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+
+            if (audio && musicToggle) {
+                audioManager.loadState();
+
+                musicToggle.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play();
+                        audioManager.isPlaying = true;
+                        musicToggle.textContent = '🎵 Pause Music';
+                        musicToggle.classList.add('playing');
+                    } else {
+                        audio.pause();
+                        audioManager.isPlaying = false;
+                        musicToggle.textContent = '🎵 Play Music';
+                        musicToggle.classList.remove('playing');
+                    }
+                    audioManager.saveState();
+                });
+
+                // Save state before leaving page
+                window.addEventListener('beforeunload', () => {
+                    audioManager.saveState();
+                });
+
+                // Continue playing if already started
+                if (audioManager.isPlaying) {
+                    audio.play().catch(() => {});
+                    musicToggle.textContent = '🎵 Pause Music';
+                    musicToggle.classList.add('playing');
+                }
+            }
+        });
+        // Invitation logic
+        document.getElementById('yesBtn').onclick = function() {
+            document.getElementById('invitationResponse').textContent = 'Yay! I can\'t wait to see you! 💖✨';
+        };
+        document.getElementById('noBtn').onclick = function() {
+            document.getElementById('invitationResponse').textContent = 'Aww, are you sure? 😢 (Try again, I know you want to say YES!)';
+        };
+    </script>
+</body>
+</html>
